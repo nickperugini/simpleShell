@@ -41,9 +41,15 @@ int sh( int argc, char **argv, char **envp )
 
   while ( go )
   {
-    /* print your prompt */
-
-    /* get command line and process */
+    /* print your prompt*/
+        printf("%s[%s]>", prompt, pwd);
+        /* get command line and process */
+        while(fgets(buf, MAXLINE, stdin) != NULL){
+                if(buf[strlen(buf)-1]=='\n'){
+                        buf[strlen(buf)-1]=0;
+                }
+        strcpy(commandline, buf);
+        }
 
     /* check for each built in command and implement */
 
