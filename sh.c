@@ -23,6 +23,7 @@ int sh( int argc, char **argv, char **envp )
   struct passwd *password_entry;
   char *homedir;
   struct pathelement *pathlist;
+  char  buf[MAXLINE];
 
   uid = getuid();
   password_entry = getpwuid(uid);               /* get passwd info */
