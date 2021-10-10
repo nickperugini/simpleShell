@@ -75,8 +75,9 @@ int sh( int argc, char **argv, char **envp )
                free(ptr);
              }
         else if (strcmp(commandline, "EXIT") == 0 || strcmp(commandline, "exit")) {   /* built-in command pwd */
-               printf("EXITING PROGRAM");
-               go=0;
+               	printf("EXITING PROGRAM");
+               	go=0;
+		continue;
              }
      /*  else  program to exec */
        /* find it */
