@@ -11,6 +11,8 @@
 #include <signal.h>
 #include "sh.h"
 
+#define  MAXLINE  128
+
 int sh( int argc, char **argv, char **envp )
 {
   char *prompt = calloc(PROMPTMAX, sizeof(char));
