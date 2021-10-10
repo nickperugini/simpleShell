@@ -41,17 +41,40 @@ int sh( int argc, char **argv, char **envp )
 
   while ( go )
   {
-    /* print your prompt*/
+        /* print your prompt*/
         printf("%s[%s]>", prompt, pwd);
         /* get command line and process */
         while(fgets(buf, MAXLINE, stdin) != NULL){
                 if(buf[strlen(buf)-1]=='\n'){
                         buf[strlen(buf)-1]=0;
                 }
-        strcpy(commandline, buf);
+
+                strcpy(commandline, buf);
+                char *arr[6];
+                int i=0;
+                arr[i] = strtok(commandline, " ");
+                while(arr[i]!=NULL){
+                        arr[i++]=strtok(NULL," ");
+                }
+
+
+
+
+        if(fgets(buf, MAXLINE, stdin) == NULL){
+                continue;
         }
 
-    /* check for each built in command and implement */
+
+        /* check for each built in command and implement */
+        if (strcmp(commandline, "pwd") == 0) {   /* built-in command pwd */
+               char *ptr = getcwd(NULL, 0);
+               printf("CWD = [%s]\n", ptr);
+               free(ptr);
+             }
+        else if (strcmp(commandline, "EXIT") == 0 || strcmp(commandline, "exit")) {   /* built-in command pwd */
+               printf("EXITING PROGRAM");
+               go=0;
+             }
 
      /*  else  program to exec */
     {
