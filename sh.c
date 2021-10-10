@@ -62,7 +62,7 @@ int sh( int argc, char **argv, char **envp )
 
         if(fgets(buf, MAXLINE, stdin) == NULL){
                 continue;
-        } 
+        }
 
 
         /* check for each built in command and implement */
@@ -75,9 +75,7 @@ int sh( int argc, char **argv, char **envp )
                printf("EXITING PROGRAM");
                go=0;
              }
-
      /*  else  program to exec */
-    {
        /* find it */
        /* do fork(), execve() and waitpid() */
 
@@ -86,7 +84,8 @@ int sh( int argc, char **argv, char **envp )
     }
   }
   return 0;
-} /* sh() */
+}
+
 
 char *which(char *command, struct pathelement *pathlist )
 {
