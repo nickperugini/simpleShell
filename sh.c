@@ -62,7 +62,7 @@ int sh( int argc, char **argv, char **envp )
 
         if(fgets(buf, MAXLINE, stdin) == NULL){
                 continue;
-        }
+        } 
 
 
         /* check for each built in command and implement */
