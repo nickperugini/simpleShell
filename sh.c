@@ -63,9 +63,9 @@ int sh( int argc, char **argv, char **envp )
 
 
 
-        if(fgets(buf, MAXLINE, stdin) == NULL){
+        /*if(buf) == NULL){
                 continue;
-        }
+        }*/
 
 
         /* check for each built in command and implement */
@@ -74,10 +74,11 @@ int sh( int argc, char **argv, char **envp )
                printf("CWD = [%s]\n", ptr);
                free(ptr);
              }
-        else if (strcmp(commandline, "EXIT") == 0 || strcmp(commandline, "exit")) {   /* built-in command pwd */
+        else if (strcmp(commandline, "exit")==0) {   /* built-in command pwd */
                	printf("EXITING PROGRAM");
                	go=0;
-		continue;
+		buf[strlen(buf)-1]=0;
+		break;
              }
      /*  else  program to exec */
        /* find it */
@@ -108,4 +109,3 @@ void list ( char *dir )
   /* see man page for opendir() and readdir() and print out filenames for
   the directory passed */
 } /* list() */
-
