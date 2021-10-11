@@ -118,6 +118,21 @@ int sh( int argc, char **argv, char **envp )
 			sprintf(prompt, " %s", arr[1]); 
 		}
 	}
+		
+	else if (strcmp(arr[0], "which") == 0){
+          if (arrctr == 1){
+            fprintf(stderr, "Not enough args\n");
+          }
+          else{
+            int i = 1;
+            while (i < arrctr+1 && i < MAXARGS){
+              char *cmd = which(arr[i], pathlist);
+              printf("%s", cmd);
+              i++;
+              free(cmd);
+            }
+          }
+        }
 
 	else if(strcmp(arr[0], "list") ==0)
 	{
@@ -146,8 +161,24 @@ int sh( int argc, char **argv, char **envp )
 
 char *which(char *command, struct pathelement *pathlist )
 {
-   /* loop through pathlist until finding command and return it.  Return
-   NULL when not found. */
+   char *cmd = malloc(64);
+  int found = 0; 
+
+  while (pathlist) {
+    sprintf(cmd, "%s/%s", pathlist->element, command);
+    if (access(cmd, X_OK) == 0) {
+      sprintf(cmd, "%s/%s\n", pathlist->element, command);
+      found = 1;
+      break;
+    }
+    pathlist = pathlist->next;
+  }
+
+  if (found == 0){
+    sprintf(cmd, "%s: not found.\n", command);
+    return cmd;
+  }
+  return cmd;
 
 } /* which() */
 
