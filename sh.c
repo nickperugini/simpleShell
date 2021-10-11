@@ -94,20 +94,30 @@ int sh( int argc, char **argv, char **envp )
         if (strcmp(arr[0], "pwd") == 0) {   /* built-in command pwd */
               	printf("check");
 		char *ptr = getcwd(NULL, 0);
-               printf("CWD = [%s]\n", ptr);
+               printf("[%s]\n", ptr);
                free(ptr);
              }
         else if (strcmp(arr[0], "exit")==0) {   /* built-in command pwd */
                	printf("EXITING PROGRAM");
                	go=0;
              }
-	/*else if (strcmp(commandline, "prompt")==0) { 
-	    	if(arr[1] == NULL){
-			printf("input prompt prefix: ";
-			char
+	else if (strcmp(commandline, "prompt")==0) {
+		if(arrctr >= 3){
+			printf("Too many arguments given\n");
+			} 
+		else if(arr[1] == NULL){
+			printf("input prompt prefix: ");
+			if(!fgets(prompt + 1, MAXARGS, stdin)){
+				printf("input error\n");
+			}
+			else if(prompt[strlen(prompt)-1] == '\n'){
+				prompt[strlen(prompt)-1] = 0;
+			}	
 		}
-		else if(
-	     }*/
+		else{
+			sprintf(prompt, " %s", arr[1]); 
+		}
+	}
 
 	else if(strcmp(arr[0], "list") ==0)
 	{
